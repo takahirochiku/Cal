@@ -22,11 +22,20 @@
         10年
         <br>{{calc() | number}}円
       </p>
-      <!-- 明細表示 -->
-      <table class="table-bordered table-striped">
-        <tr *ngFor="let value of calcArray();let i =index">
+      <p>
+        <button class="btn btn-warning btn-block myButton" (click)="clear()">クリア
+        </button>
+      </p>
+      <!--保存ボタン-->
+      <p>
+        <button class="btn btn-success btn-block myButton" [disabled]="!(initValue && rate)" (click)="save()">保存
+        </button>
+      </p>
+      <!--明細表示-->
+      <table>
+        <tr *ngFor="let value of calcArray(); let i = index" class="table table-bordered table table-striped">
           <td>{{i}}年目</td>
-          <td>{{value|number}}円</td>
+          <td>{{value | number}}円</td>
         </tr>
       </table>
     </div>

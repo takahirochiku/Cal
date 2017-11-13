@@ -36,4 +36,30 @@ export class AppComponent {
     }
     return ret;
   }
+
+  // 入力値を保存
+  save(): void {
+    localStorage.setItem(
+      'initValue', this.initValue.toString()); // 元本
+    localStorage.setItem(
+      'rate', this.rate.toString()); // 金利
+  }
+
+  // 入力値と保存データをクリア
+  clear(): void {
+    localStorage.setItem('initValue', '0'); // 元本
+    localStorage.setItem('rate', '0'); // 金利
+    this.initValue = 0;
+    this.rate = 0;
+  }
+
+  // アプリ起動時の入力値設定
+  ngOnInit() {
+    if (localStorage.getItem('initValue')) {
+      this.initValue = Number(localStorage.getItem('initValue'));
+      this.rate = Number(localStorage.getItem('rate'));
+    } else {
+      this.clear();
+    }
+  }
 }
